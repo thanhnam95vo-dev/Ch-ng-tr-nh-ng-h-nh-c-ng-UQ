@@ -1163,6 +1163,7 @@ function metricDisplay(metric,value){
   return new Intl.NumberFormat("vi-VN").format(value);
 }
 const LOWER_IS_BETTER=new Set(["notpssl","notpssl_old","notpssl_2026","notpssl_new","sim_under5","rev_under500"]);
+const WHITE_TONE="--rank-bg:#ffffff;--rank-border:#dbe5ee";
 function metricRank(list,a,metric){
   const value=metricValue(a,metric);
   return 1+list.reduce((better,item)=>{
@@ -1298,7 +1299,8 @@ function renderAreas(){
             const clickKey=key==="psslRate"?"pssl":key;
             const rank=metricRank(list,a,key);
             const toneTitle=key==="total"?"Chỉ tiêu mặc định":((key==="pssl"||key==="psslRate")&&metricValue(a,key)===0?"Chưa phát sinh PSSL":`Xếp hạng ${rank}/${list.length}`);
-            return `<td class="click-cell rank-tone ${css}" style="${metricTone(list,a,key)}" title="${toneTitle}" data-area="${esc(a.area)}" data-key="${clickKey}" data-label="${label.replace(/<br>/g," ")}" data-status-type="${statusType}">${display}</td>`;
+            const tone=(key==="pssl"||key==="notpssl")?WHITE_TONE:metricTone(list,a,key);
+            return `<td class="click-cell rank-tone ${css}" style="${tone}" title="${toneTitle}" data-area="${esc(a.area)}" data-key="${clickKey}" data-label="${label.replace(/<br>/g," ")}" data-status-type="${statusType}">${display}</td>`;
           }).join("")}
         </tr>`;
       }).join("");
@@ -1309,7 +1311,11 @@ function renderAreas(){
         ${columns.map(([key,label])=>{
           const css=key==="subs"||key==="subs70"?"area-subs":key==="revenue"?"area-revenue":"";
           const rank=metricRank(list,a,key);
-          return `<td class="click-cell rank-tone ${css}" style="${rankTone(rank,list.length)}" title="Xếp hạng ${rank}/${list.length}" data-area="${esc(a.area)}" data-key="${key}" data-label="${label.replace(/&lt;/g,"<")}" data-status-type="${statusType}">${metricDisplay(key,metricValue(a,key))}</td>`;
+          const sparseNewMetrics=["sim5","sim10","sim20","sim30","rev500","rev1m","rev2m","rev3m"];
+          const keepWhite=statusType==="new"&&sparseNewMetrics.includes(key)&&metricValue(a,key)<=5;
+          const tone=keepWhite?WHITE_TONE:rankTone(rank,list.length);
+          const toneTitle=keepWhite?"Sản lượng từ 0 đến 5 - không tô màu":`Xếp hạng ${rank}/${list.length}`;
+          return `<td class="click-cell rank-tone ${css}" style="${tone}" title="${toneTitle}" data-area="${esc(a.area)}" data-key="${key}" data-label="${label.replace(/&lt;/g,"<")}" data-status-type="${statusType}">${metricDisplay(key,metricValue(a,key))}</td>`;
         }).join("")}
       </tr>`).join("");
     }
