@@ -353,7 +353,7 @@ footer{text-align:center;color:#7b8999;font-size:12px;margin-top:24px}
   left:30px!important;
   padding-left:1px!important;
   padding-right:1px!important;
-  font-size:15px!important;
+  font-size:11px!important;
   line-height:1!important;
   white-space:nowrap!important;
   overflow:hidden!important;
@@ -634,6 +634,58 @@ font-weight:850
 .area-table-wrap td.rank-tone:hover{filter:saturate(1.08) brightness(.98)}
 .area-table-block{margin-bottom:18px}
 .area-table-block .area-status{margin-bottom:6px}
+
+/* Chỉ thu gọn hai bảng khi đang ở tab Tổng quan. */
+#areaView.overview-compact{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:16px;
+  align-items:start;
+}
+#areaView.overview-compact > :not(.area-table-block){
+  grid-column:1 / -1;
+}
+#areaView.overview-compact .area-table-wrap{
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+}
+#areaView.overview-compact .area-table-wrap table{
+  width:100%!important;
+  min-width:592px!important;
+  table-layout:fixed;
+}
+#areaView.overview-compact .area-table-wrap th,
+#areaView.overview-compact .area-table-wrap td{
+  padding:8px 7px!important;
+  font-size:12px!important;
+}
+#areaView.overview-compact .area-table-wrap th:nth-child(1),
+#areaView.overview-compact .area-table-wrap td:nth-child(1){
+  width:42px!important;
+  min-width:42px!important;
+  max-width:42px!important;
+}
+#areaView.overview-compact .area-table-wrap th:nth-child(2),
+#areaView.overview-compact .area-table-wrap td:nth-child(2){
+  width:150px!important;
+  min-width:150px!important;
+  max-width:150px!important;
+  left:42px!important;
+}
+#areaView.overview-compact .area-table-wrap th:nth-child(n+3),
+#areaView.overview-compact .area-table-wrap td:nth-child(n+3){
+  width:100px!important;
+  min-width:100px!important;
+  max-width:100px!important;
+}
+@media(max-width:1050px){
+  #areaView.overview-compact{
+    grid-template-columns:1fr;
+  }
+  #areaView.overview-compact > *{
+    grid-column:1!important;
+  }
+}
 
 </style>
 </head>
@@ -1152,6 +1204,12 @@ function totalCell(key,label,value){
 }
 
 function renderAreas(){
+  const areaView=$("areaView");
+  if(areaView){
+    const compact=currentAreaTab==="overview";
+    areaView.classList.toggle("overview-compact",compact);
+    areaView.style.display=compact?"grid":"block";
+  }
   const selectedArea=$("areaMetric")?$("areaMetric").value:"all";
   const selectedIndicator=$("areaIndicator")?$("areaIndicator").value:"all";
   const indicatorLabel=$("areaIndicator")?.selectedOptions?.[0]?.textContent||"";
