@@ -268,7 +268,7 @@ footer{text-align:center;color:#7b8999;font-size:12px;margin-top:24px}
   padding-bottom:5px!important;
   padding-left:5px!important;
   padding-right:5px!important;
-  font-size:16.5px!important;
+  font-size:11.5px!important;
   border: 0.5px solid;
 }
 
@@ -562,7 +562,7 @@ footer{text-align:center;color:#7b8999;font-size:12px;margin-top:24px}
 .area-table-wrap tfoot td:nth-child(2){
   position:sticky!important;
   left:0!important;
-  min-width:150px!important;
+  min-width:95px!important;
   width:115px!important;
   max-width:95px!important;
 }
@@ -731,7 +731,9 @@ font-weight:850
   <div class="area-status" id="areaStatusNew"></div>
   <div class="area-table-wrap">
     <table>
-      <thead id="areaHeadNew"></thead>
+      <thead id="areaHeadNew">
+        
+      </thead>
       <tbody id="areaBodyNew"></tbody>
       <tfoot id="areaFootNew"></tfoot>
     </table>
@@ -825,6 +827,28 @@ const FIELDS=["Đơn vị","ID điểm bán","HRM điểm bán","Tên ĐUQ","Nh�
 const AREA_STATS=[{"area":"Tân Ninh","total":15,"pssl":9,"pssl70":4,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":3,"subs":25,"subs70":5,"revenue":664000,"sim_under5":14,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":15,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Long An","total":23,"pssl":21,"pssl70":12,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":1,"subs":68,"subs70":19,"revenue":4999000,"sim_under5":17,"sim5":6,"sim10":0,"sim20":0,"sim30":0,"rev_under500":20,"rev500":3,"rev1m":2,"rev2m":0,"rev3m":0},{"area":"Tân Biên","total":10,"pssl":7,"pssl70":4,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":2,"subs":17,"subs70":13,"revenue":1359000,"sim_under5":9,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":9,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Châu Thành","total":10,"pssl":6,"pssl70":3,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":3,"subs":17,"subs70":6,"revenue":730000,"sim_under5":9,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":10,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Bến Cầu","total":13,"pssl":9,"pssl70":4,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":3,"subs":16,"subs70":6,"revenue":639000,"sim_under5":13,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":13,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Trụ","total":13,"pssl":10,"pssl70":7,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":2,"subs":22,"subs70":12,"revenue":1200000,"sim_under5":13,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":13,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Dương Minh Châu","total":11,"pssl":4,"pssl70":1,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":6,"subs":11,"subs70":1,"revenue":125000,"sim_under5":10,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":11,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Thủ Thừa","total":10,"pssl":8,"pssl70":5,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":31,"subs70":12,"revenue":1349000,"sim_under5":8,"sim5":2,"sim10":1,"sim20":0,"sim30":0,"rev_under500":9,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Châu","total":6,"pssl":2,"pssl70":2,"notpssl_old":1,"notpssl_2026":1,"notpssl_new":2,"subs":5,"subs70":4,"revenue":900000,"sim_under5":6,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Đức Huệ","total":11,"pssl":4,"pssl70":1,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":4,"subs":16,"subs70":10,"revenue":1873000,"sim_under5":10,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":10,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Cần Đước","total":15,"pssl":13,"pssl70":6,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":89,"subs70":69,"revenue":21192000,"sim_under5":10,"sim5":5,"sim10":4,"sim20":2,"sim30":0,"rev_under500":11,"rev500":4,"rev1m":4,"rev2m":2,"rev3m":1},{"area":"Hòa Thành","total":6,"pssl":4,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":6,"subs70":0,"revenue":69000,"sim_under5":6,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":6,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Cần Giuộc","total":12,"pssl":8,"pssl70":5,"notpssl_old":1,"notpssl_2026":3,"notpssl_new":0,"subs":70,"subs70":56,"revenue":12259000,"sim_under5":9,"sim5":3,"sim10":2,"sim20":1,"sim30":1,"rev_under500":9,"rev500":3,"rev1m":2,"rev2m":2,"rev3m":2},{"area":"Tầm Vu","total":7,"pssl":5,"pssl70":2,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":14,"subs70":4,"revenue":429000,"sim_under5":6,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":7,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Kiến Tường","total":8,"pssl":8,"pssl70":5,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":65,"subs70":25,"revenue":4498000,"sim_under5":2,"sim5":6,"sim10":3,"sim20":0,"sim30":0,"rev_under500":5,"rev500":3,"rev1m":2,"rev2m":0,"rev3m":0},{"area":"Đức Hòa","total":23,"pssl":15,"pssl70":10,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":7,"subs":64,"subs70":44,"revenue":5290000,"sim_under5":18,"sim5":5,"sim10":2,"sim20":0,"sim30":0,"rev_under500":19,"rev500":4,"rev1m":2,"rev2m":0,"rev3m":0},{"area":"Tân Thạnh","total":10,"pssl":6,"pssl70":3,"notpssl_old":0,"notpssl_2026":2,"notpssl_new":2,"subs":22,"subs70":14,"revenue":1685000,"sim_under5":9,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":9,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Bến Lức","total":17,"pssl":14,"pssl70":8,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":1,"subs":49,"subs70":23,"revenue":3325000,"sim_under5":14,"sim5":3,"sim10":1,"sim20":0,"sim30":0,"rev_under500":16,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Thạnh Hóa","total":7,"pssl":4,"pssl70":2,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":0,"subs":22,"subs70":5,"revenue":600000,"sim_under5":6,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":7,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Gò Dầu","total":12,"pssl":5,"pssl70":2,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":6,"subs":13,"subs70":6,"revenue":715000,"sim_under5":11,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":11,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Vĩnh Hưng","total":15,"pssl":14,"pssl70":11,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":79,"subs70":50,"revenue":8176000,"sim_under5":11,"sim5":4,"sim10":2,"sim20":1,"sim30":1,"rev_under500":13,"rev500":2,"rev1m":2,"rev2m":1,"rev3m":1},{"area":"Trảng Bàng","total":9,"pssl":5,"pssl70":4,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":4,"subs":59,"subs70":15,"revenue":3194000,"sim_under5":8,"sim5":1,"sim10":1,"sim20":1,"sim30":1,"rev_under500":8,"rev500":1,"rev1m":1,"rev2m":1,"rev3m":0}];
 const AREA_STATS_NEW=[{"area":"Tân Ninh","total":5,"pssl":2,"pssl70":2,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":3,"subs":3,"subs70":2,"revenue":279000,"sim_under5":5,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Long An","total":10,"pssl":9,"pssl70":5,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":1,"subs":19,"subs70":6,"revenue":2090000,"sim_under5":9,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":9,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Tân Biên","total":4,"pssl":2,"pssl70":2,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":7,"subs70":7,"revenue":700000,"sim_under5":4,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":4,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Châu Thành","total":5,"pssl":2,"pssl70":1,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":3,"subs":5,"subs70":2,"revenue":240000,"sim_under5":5,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Bến Cầu","total":6,"pssl":3,"pssl70":2,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":3,"subs":5,"subs70":3,"revenue":345000,"sim_under5":6,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":6,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Trụ","total":3,"pssl":1,"pssl70":1,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":2,"subs70":2,"revenue":255000,"sim_under5":3,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":3,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Dương Minh Châu","total":6,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":6,"subs":0,"subs70":0,"revenue":0,"sim_under5":6,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":6,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Thủ Thừa","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Châu","total":2,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":0,"subs70":0,"revenue":0,"sim_under5":2,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":2,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Đức Huệ","total":5,"pssl":1,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":4,"subs":1,"subs70":0,"revenue":0,"sim_under5":5,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Cần Đước","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Hòa Thành","total":3,"pssl":1,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":1,"subs70":0,"revenue":0,"sim_under5":3,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":3,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Cần Giuộc","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tầm Vu","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Kiến Tường","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Đức Hòa","total":10,"pssl":3,"pssl70":1,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":7,"subs":4,"subs70":1,"revenue":125000,"sim_under5":10,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":10,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Thạnh","total":2,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":2,"subs":0,"subs70":0,"revenue":0,"sim_under5":2,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":2,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Bến Lức","total":4,"pssl":3,"pssl70":1,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":1,"subs":5,"subs70":1,"revenue":195000,"sim_under5":4,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":4,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Thạnh Hóa","total":0,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":0,"subs70":0,"revenue":0,"sim_under5":0,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":0,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Gò Dầu","total":8,"pssl":2,"pssl70":1,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":6,"subs":6,"subs70":1,"revenue":90000,"sim_under5":8,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":8,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Vĩnh Hưng","total":2,"pssl":2,"pssl70":2,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":6,"subs70":2,"revenue":419000,"sim_under5":2,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":2,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Trảng Bàng","total":4,"pssl":0,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":4,"subs":0,"subs70":0,"revenue":0,"sim_under5":4,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":4,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0}];
 const AREA_STATS_EXIST=[{"area":"Tân Ninh","total":10,"pssl":7,"pssl70":2,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":0,"subs":22,"subs70":3,"revenue":385000,"sim_under5":9,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":10,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Long An","total":13,"pssl":12,"pssl70":7,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":49,"subs70":13,"revenue":2909000,"sim_under5":8,"sim5":5,"sim10":0,"sim20":0,"sim30":0,"rev_under500":11,"rev500":2,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Tân Biên","total":6,"pssl":5,"pssl70":2,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":0,"subs":10,"subs70":6,"revenue":659000,"sim_under5":5,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Châu Thành","total":5,"pssl":4,"pssl70":2,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":12,"subs70":4,"revenue":490000,"sim_under5":4,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Bến Cầu","total":7,"pssl":6,"pssl70":2,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":0,"subs":11,"subs70":3,"revenue":294000,"sim_under5":7,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":7,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Trụ","total":10,"pssl":9,"pssl70":6,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":0,"subs":20,"subs70":10,"revenue":945000,"sim_under5":10,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":10,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Dương Minh Châu","total":5,"pssl":4,"pssl70":1,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":11,"subs70":1,"revenue":125000,"sim_under5":4,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":5,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Thủ Thừa","total":10,"pssl":8,"pssl70":5,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":31,"subs70":12,"revenue":1349000,"sim_under5":8,"sim5":2,"sim10":1,"sim20":0,"sim30":0,"rev_under500":9,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Tân Châu","total":4,"pssl":2,"pssl70":2,"notpssl_old":1,"notpssl_2026":1,"notpssl_new":0,"subs":5,"subs70":4,"revenue":900000,"sim_under5":4,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":3,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Đức Huệ","total":6,"pssl":3,"pssl70":1,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":0,"subs":15,"subs70":10,"revenue":1873000,"sim_under5":5,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":5,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Cần Đước","total":15,"pssl":13,"pssl70":6,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":89,"subs70":69,"revenue":21192000,"sim_under5":10,"sim5":5,"sim10":4,"sim20":2,"sim30":0,"rev_under500":11,"rev500":4,"rev1m":4,"rev2m":2,"rev3m":1},{"area":"Hòa Thành","total":3,"pssl":3,"pssl70":0,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":5,"subs70":0,"revenue":69000,"sim_under5":3,"sim5":0,"sim10":0,"sim20":0,"sim30":0,"rev_under500":3,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Cần Giuộc","total":12,"pssl":8,"pssl70":5,"notpssl_old":1,"notpssl_2026":3,"notpssl_new":0,"subs":70,"subs70":56,"revenue":12259000,"sim_under5":9,"sim5":3,"sim10":2,"sim20":1,"sim30":1,"rev_under500":9,"rev500":3,"rev1m":2,"rev2m":2,"rev3m":2},{"area":"Tầm Vu","total":7,"pssl":5,"pssl70":2,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":14,"subs70":4,"revenue":429000,"sim_under5":6,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":7,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Kiến Tường","total":8,"pssl":8,"pssl70":5,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":65,"subs70":25,"revenue":4498000,"sim_under5":2,"sim5":6,"sim10":3,"sim20":0,"sim30":0,"rev_under500":5,"rev500":3,"rev1m":2,"rev2m":0,"rev3m":0},{"area":"Đức Hòa","total":13,"pssl":12,"pssl70":9,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":60,"subs70":43,"revenue":5165000,"sim_under5":8,"sim5":5,"sim10":2,"sim20":0,"sim30":0,"rev_under500":9,"rev500":4,"rev1m":2,"rev2m":0,"rev3m":0},{"area":"Tân Thạnh","total":8,"pssl":6,"pssl70":3,"notpssl_old":0,"notpssl_2026":2,"notpssl_new":0,"subs":22,"subs70":14,"revenue":1685000,"sim_under5":7,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":7,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Bến Lức","total":13,"pssl":11,"pssl70":7,"notpssl_old":2,"notpssl_2026":0,"notpssl_new":0,"subs":44,"subs70":22,"revenue":3130000,"sim_under5":10,"sim5":3,"sim10":1,"sim20":0,"sim30":0,"rev_under500":12,"rev500":1,"rev1m":1,"rev2m":0,"rev3m":0},{"area":"Thạnh Hóa","total":7,"pssl":4,"pssl70":2,"notpssl_old":3,"notpssl_2026":0,"notpssl_new":0,"subs":22,"subs70":5,"revenue":600000,"sim_under5":6,"sim5":1,"sim10":1,"sim20":0,"sim30":0,"rev_under500":7,"rev500":0,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Gò Dầu","total":4,"pssl":3,"pssl70":1,"notpssl_old":0,"notpssl_2026":1,"notpssl_new":0,"subs":7,"subs70":5,"revenue":625000,"sim_under5":3,"sim5":1,"sim10":0,"sim20":0,"sim30":0,"rev_under500":3,"rev500":1,"rev1m":0,"rev2m":0,"rev3m":0},{"area":"Vĩnh Hưng","total":13,"pssl":12,"pssl70":9,"notpssl_old":1,"notpssl_2026":0,"notpssl_new":0,"subs":73,"subs70":48,"revenue":7757000,"sim_under5":9,"sim5":4,"sim10":2,"sim20":1,"sim30":1,"rev_under500":11,"rev500":2,"rev1m":2,"rev2m":1,"rev3m":1},{"area":"Trảng Bàng","total":5,"pssl":5,"pssl70":4,"notpssl_old":0,"notpssl_2026":0,"notpssl_new":0,"subs":59,"subs70":15,"revenue":3194000,"sim_under5":4,"sim5":1,"sim10":1,"sim20":1,"sim30":1,"rev_under500":4,"rev500":1,"rev1m":1,"rev2m":1,"rev3m":0}];
+
+// Cập nhật các ngưỡng điều hành mới mà không làm thay đổi dữ liệu nền.
+function refreshAreaThresholds(stats,statusType){
+  stats.forEach(a=>{
+    const rows=DATA.filter(r=>{
+      if(String(r["Đơn vị"]||"").trim()!==String(a.area).trim()) return false;
+      const status=String(r["Trạng thái ĐUQ"]||"").trim();
+      if(statusType==="new") return status==="ĐUQ mới";
+      if(statusType==="exist") return status==="ĐUQ trước năm 2026"||status==="ĐUQ trong năm 2026";
+      return true;
+    });
+    a.sim10=rows.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=8).length;
+    a.sim20=rows.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=10).length;
+    a.sim30=rows.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=20).length;
+    a.rev1m=rows.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=800000).length;
+    a.rev2m=rows.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=1000000).length;
+    a.rev3m=rows.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=3000000).length;
+  });
+}
+refreshAreaThresholds(AREA_STATS,null);
+refreshAreaThresholds(AREA_STATS_NEW,"new");
+refreshAreaThresholds(AREA_STATS_EXIST,"exist");
 
 function norm(s){return String(s??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").toLowerCase().trim()}
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
@@ -947,13 +971,13 @@ function getList(){
     if(k==="revenue") list=[...list];
     if(k==="sim_under5") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)<5);
     if(k==="sim5") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=5);
-    if(k==="sim10") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=10);
-    if(k==="sim20") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=20);
-    if(k==="sim30") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=30);
+    if(k==="sim10") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=8);
+    if(k==="sim20") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=10);
+    if(k==="sim30") list=list.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=20);
     if(k==="rev_under500") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)<500000);
     if(k==="rev500") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=500000);
-    if(k==="rev1m") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=1000000);
-    if(k==="rev2m") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=2000000);
+    if(k==="rev1m") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=800000);
+    if(k==="rev2m") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=1000000);
     if(k==="rev3m") list=list.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=3000000);
   }
   const selectedListArea=$("listAreaFilter")?$("listAreaFilter").value:"all";
@@ -1041,10 +1065,7 @@ const AREA_INDICATORS={
     ["total","Số lượng ĐUQ"],
     ["pssl","ĐUQ có PSSL"],
     ["psslRate","Tỷ lệ PSSL"],
-    ["notpssl","ĐUQ chưa PSSL"],
-    ["notpssl_old","Chưa PSSL - ĐUQ trước năm 2026"],
-    ["notpssl_2026","Chưa PSSL - ĐUQ trong năm 2026"],
-    ["notpssl_new","Chưa PSSL - ĐUQ mới"]
+    ["notpssl","ĐUQ chưa PSSL"]
   ],
   performance:[
     ["all","Hiển thị toàn bộ chỉ tiêu"],
@@ -1052,14 +1073,14 @@ const AREA_INDICATORS={
     ["subs70","Thuê bao PTM từ 70k"],
     ["sim_under5","SL ĐUQ dưới 5 SIM"],
     ["sim5","SL ĐUQ từ 5 SIM"],
-    ["sim10","SL ĐUQ từ 10 SIM"],
-    ["sim20","SL ĐUQ từ 20 SIM"],
-    ["sim30","SL ĐUQ từ 30 SIM"],
+    ["sim10","SL ĐUQ từ 8 SIM"],
+    ["sim20","SL ĐUQ từ 10 SIM"],
+    ["sim30","SL ĐUQ từ 20 SIM"],
     ["revenue","Tổng doanh thu"],
     ["rev_under500","SL ĐUQ doanh thu dưới 500 nghìn"],
     ["rev500","SL ĐUQ doanh thu từ 500 nghìn"],
-    ["rev1m","SL ĐUQ doanh thu từ 1 triệu"],
-    ["rev2m","SL ĐUQ doanh thu từ 2 triệu"],
+    ["rev1m","SL ĐUQ doanh thu từ 800 nghìn"],
+    ["rev2m","SL ĐUQ doanh thu từ 1 triệu"],
     ["rev3m","SL ĐUQ doanh thu từ 3 triệu"]
   ]
 };
@@ -1160,10 +1181,7 @@ function renderAreas(){
           ["total","SL ĐUQ"],
           ["pssl","ĐUQ PSSL"],
           ["psslRate","Tỷ lệ PSSL"],
-          ["notpssl","Chưa PSSL"],
-          ["notpssl_old","Chưa PSSL<br>trước 2026"],
-          ["notpssl_2026","Chưa PSSL<br>trong 2026"],
-          ["notpssl_new","Chưa PSSL<br>ĐUQ mới"]
+          ["notpssl","Chưa PSSL"]
         ];
       }
       return [[selectedIndicator,indicatorLabel]];
@@ -1174,14 +1192,14 @@ function renderAreas(){
         ["subs70","TB PTM từ 70k"],
         ["sim_under5","SL ĐUQ &lt;5 SIM"],
         ["sim5","SL ĐUQ ≥5 SIM"],
-        ["sim10","SL ĐUQ ≥10 SIM"],
-        ["sim20","SL ĐUQ ≥20 SIM"],
-        ["sim30","SL ĐUQ ≥30 SIM"],
+        ["sim10","SL ĐUQ ≥8 SIM"],
+        ["sim20","SL ĐUQ ≥10 SIM"],
+        ["sim30","SL ĐUQ ≥20 SIM"],
         ["revenue","Tổng doanh thu"],
         ["rev_under500","SL ĐUQ &lt;500K"],
         ["rev500","SL ĐUQ ≥500K"],
-        ["rev1m","SL ĐUQ ≥1 triệu"],
-        ["rev2m","SL ĐUQ ≥2 triệu"],
+        ["rev1m","SL ĐUQ ≥800K"],
+        ["rev2m","SL ĐUQ ≥1 triệu"],
         ["rev3m","SL ĐUQ ≥3 triệu"]
       ];
     }
