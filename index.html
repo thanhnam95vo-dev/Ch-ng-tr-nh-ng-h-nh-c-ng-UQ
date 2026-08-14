@@ -632,6 +632,13 @@ font-weight:850
 }
 .area-table-wrap td.rank-tone b{color:inherit!important}
 .area-table-wrap td.rank-tone:hover{filter:saturate(1.08) brightness(.98)}
+/* Chỉ căn phải số tiền của cột Tổng doanh thu trong hai bảng địa bàn. */
+#areaView td.area-revenue,
+#areaView tfoot td[data-total-key="revenue"]{
+  text-align:right!important;
+  padding-right:3px!important;
+  font-variant-numeric:tabular-nums;
+}
 .area-table-block{margin-bottom:18px}
 .area-table-block .area-status{margin-bottom:6px}
 
@@ -1214,21 +1221,21 @@ function renderAreas(){
   const selectedIndicator=$("areaIndicator")?$("areaIndicator").value:"all";
   const indicatorLabel=$("areaIndicator")?.selectedOptions?.[0]?.textContent||"";
 
-  function prepareList(source){
+  function prepareList(source,keepZeroAreas=false){
     let list=[...source];
     if(selectedArea!=="all"){
       list=list.filter(a=>String(a.area).trim()===selectedArea);
     }
     if(selectedIndicator!=="all"){
-      list=list.filter(a=>metricValue(a,selectedIndicator)>0);
+      if(!keepZeroAreas) list=list.filter(a=>metricValue(a,selectedIndicator)>0);
       list.sort((a,b)=>metricValue(b,selectedIndicator)-metricValue(a,selectedIndicator)||b.total-a.total||b.revenue-a.revenue);
     }else if(currentAreaTab==="overview"){
       list.sort((a,b)=>metricValue(b,"psslRate")-metricValue(a,"psslRate")||b.pssl-a.pssl||b.total-a.total);
     }else{
       list.sort((a,b)=>b.subs-a.subs||b.revenue-a.revenue);
     }
-    // Ẩn địa bàn không có ĐUQ trong nhóm này
-    list=list.filter(a=>a.total>0);
+    // Bảng ĐUQ mới luôn giữ đủ 22 địa bàn; bảng hiện hữu giữ nguyên logic cũ.
+    if(!keepZeroAreas) list=list.filter(a=>a.total>0);
     return list;
   }
 
@@ -1325,7 +1332,7 @@ function renderAreas(){
     }
   }
 
-  const listNew=prepareList(AREA_STATS_NEW);
+  const listNew=prepareList(AREA_STATS_NEW,true);
   const listExist=prepareList(AREA_STATS_EXIST);
 
   renderOneTable(listNew,"areaHeadNew","areaBodyNew","areaFootNew","areaStatusNew","areaPillNew","new","ĐUQ MỚI");
