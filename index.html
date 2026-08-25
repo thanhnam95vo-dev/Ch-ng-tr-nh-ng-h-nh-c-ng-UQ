@@ -3774,7 +3774,7 @@
             data-notpssl-class="ĐUQ trước năm 2026"
           >
             <small>ĐUQ trước năm 2026</small>
-            <strong>24</strong>
+            <strong>8</strong>
           </button>
           <button
             type="button"
@@ -3782,7 +3782,7 @@
             data-notpssl-class="ĐUQ trong năm 2026"
           >
             <small>ĐUQ trong năm 2026</small>
-            <strong>10</strong>
+            <strong>6</strong>
           </button>
           <button
             type="button"
@@ -3790,7 +3790,7 @@
             data-notpssl-class="ĐUQ mới"
           >
             <small>ĐUQ mới</small>
-            <strong>48</strong>
+            <strong>37</strong>
           </button>
         </div>
 
@@ -25022,6 +25022,7 @@
       }
 
       function render() {
+        syncNotPsslClassCounts();
         $("notpsslClassMenu").classList.toggle("is-hidden", mode !== "notpssl");
         const list = getList(),
           sumSubs = list.reduce(
@@ -26599,6 +26600,27 @@ bindExcelExportButtons();
         btn.addEventListener("click",()=>setTimeout(syncAreaExportButtons,0));
       });
 
+
+
+      function syncNotPsslClassCounts(){
+        const rows = DATA.filter(r => Number(r["ĐUQ có PSSL"] || 0) <= 0);
+        const map = {
+          "ĐUQ trước năm 2026": 0,
+          "ĐUQ trong năm 2026": 0,
+          "ĐUQ mới": 0
+        };
+        rows.forEach(r => {
+          const k = String(r["Trạng thái ĐUQ"] || "").trim();
+          if(Object.prototype.hasOwnProperty.call(map,k)) map[k]++;
+        });
+        document.querySelectorAll("[data-notpssl-class]").forEach(btn => {
+          const k = btn.dataset.notpsslClass;
+          const strong = btn.querySelector("strong");
+          if(strong) strong.textContent = map[k] || 0;
+        });
+      }
+
+syncNotPsslClassCounts();
 </script>
   </body>
 </html>
