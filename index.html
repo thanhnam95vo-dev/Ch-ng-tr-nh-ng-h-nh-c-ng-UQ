@@ -3347,6 +3347,150 @@
         color: #ffffff !important;
       }
 
+
+      /* ===== BỘ LỌC THÁNG + TỪ NGÀY / ĐẾN NGÀY TOÀN DASHBOARD ===== */
+      .global-report-toolbar{
+        display:grid !important;
+        grid-template-columns:minmax(0,1fr) auto;
+        gap:10px 18px !important;
+        align-items:end !important;
+      }
+      .global-time-filter{
+        display:flex;
+        gap:10px;
+        align-items:flex-end;
+        flex-wrap:wrap;
+        min-width:0;
+      }
+      .global-time-field{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+        min-width:145px;
+      }
+      .global-time-field.global-month-field{
+        min-width:210px;
+      }
+      .global-time-field label{
+        color:#fff;
+        font-size:12px;
+        font-weight:800;
+        white-space:nowrap;
+      }
+      .global-time-field input,
+      .global-time-field select,
+      #monthSelector{
+        height:40px !important;
+        min-height:40px !important;
+        padding:0 11px !important;
+        border:1px solid rgba(255,255,255,.6) !important;
+        border-radius:10px !important;
+        background:#fff !important;
+        color:#173b68 !important;
+        font-size:14px !important;
+        font-weight:800 !important;
+        outline:none;
+      }
+      .global-time-field input{
+        min-width:150px;
+      }
+      .global-time-actions{
+        display:flex;
+        gap:7px;
+        align-items:center;
+      }
+      .global-date-apply,
+      .global-date-reset{
+        height:40px;
+        border-radius:10px;
+        padding:0 14px;
+        font-weight:900;
+        font-size:13px;
+        cursor:pointer;
+      }
+      .global-date-apply{
+        border:1px solid #fff;
+        background:#fff;
+        color:#005baa;
+      }
+      .global-date-reset{
+        border:1px solid rgba(255,255,255,.5);
+        background:rgba(255,255,255,.12);
+        color:#fff;
+      }
+      .global-time-meta{
+        grid-column:1 / -1;
+        display:flex;
+        align-items:center;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+      #performanceRangeNote{
+        display:inline-flex;
+        align-items:center;
+        min-height:28px;
+        padding:4px 9px;
+        border-radius:999px;
+        background:rgba(255,255,255,.11);
+        color:rgba(255,255,255,.92);
+        font-size:11px;
+        font-weight:700;
+      }
+      .global-report-toolbar .month-independent-note{
+        grid-column:2;
+        grid-row:1;
+        align-self:center;
+        max-width:430px;
+      }
+      @media(max-width:900px){
+        .global-report-toolbar{
+          grid-template-columns:1fr !important;
+        }
+        .global-report-toolbar .month-independent-note{
+          grid-column:1;
+          grid-row:auto;
+          max-width:none;
+        }
+      }
+      @media(max-width:620px){
+        .global-time-filter{
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          width:100%;
+        }
+        .global-time-field.global-month-field{
+          grid-column:1 / -1;
+        }
+        .global-time-field{
+          min-width:0;
+        }
+        .global-time-field input,
+        .global-time-field select,
+        #monthSelector{
+          width:100%;
+          min-width:0 !important;
+        }
+        .global-time-actions{
+          grid-column:1 / -1;
+        }
+        .global-date-apply,
+        .global-date-reset{
+          flex:1;
+        }
+      }
+
+
+      /* Tiêu đề 3 cột so sánh T-1: chữ dài nhưng vẫn giữ bảng gọn */
+      .area-table-wrap th.col-compare{
+        font-size:9px !important;
+        line-height:1.08 !important;
+        white-space:normal !important;
+        padding-left:3px !important;
+        padding-right:3px !important;
+        vertical-align:middle !important;
+        text-align:center !important;
+      }
+
 </style>
   </head>
   <body>
@@ -3365,14 +3509,31 @@
             alt="Logo VNPT"
           />
         </div>
-        <div class="month-toolbar" aria-label="Bộ chọn tháng báo cáo">
-          <div class="month-picker">
-            <label for="monthSelector">📅 Tháng báo cáo</label>
-            <select id="monthSelector" aria-label="Chọn tháng báo cáo"></select>
+        <div class="month-toolbar global-report-toolbar" aria-label="Bộ lọc thời gian báo cáo">
+          <div class="global-time-filter">
+            <div class="global-time-field global-month-field">
+              <label for="monthSelector">📅 Tháng báo cáo</label>
+              <select id="monthSelector" aria-label="Chọn tháng báo cáo"></select>
+            </div>
+            <div class="global-time-field">
+              <label for="performanceFromDate">Từ ngày</label>
+              <input type="date" id="performanceFromDate">
+            </div>
+            <div class="global-time-field">
+              <label for="performanceToDate">Đến ngày</label>
+              <input type="date" id="performanceToDate">
+            </div>
+            <div class="global-time-actions">
+              <button type="button" class="global-date-apply" id="applyPerformanceRange">Áp dụng</button>
+              <button type="button" class="global-date-reset" id="resetPerformanceRange">Toàn kỳ</button>
+            </div>
+          </div>
+          <div class="global-time-meta">
             <span id="monthDataStatus">Đang tải dữ liệu tháng…</span>
+            <span id="performanceRangeNote">Bộ lọc ngày áp dụng cho toàn bộ dashboard.</span>
           </div>
           <div class="month-independent-note">
-            🎁 Tri ân 25/8 là dữ liệu sự kiện độc lập, không thay đổi khi chuyển tháng.
+            🎁 Tri ân 25/8 là dữ liệu sự kiện độc lập, không thay đổi theo bộ lọc thời gian.
           </div>
         </div>
         <nav class="top-nav">
@@ -4048,22 +4209,6 @@
             ↻ Đặt lại bộ lọc
           </button>
         </div>
-        <div class="performance-range-bar" id="performanceRangeBar">
-          <div class="performance-range-field">
-            <label for="performanceFromDate">Từ ngày</label>
-            <input type="date" id="performanceFromDate">
-          </div>
-          <div class="performance-range-field">
-            <label for="performanceToDate">Đến ngày</label>
-            <input type="date" id="performanceToDate">
-          </div>
-          <button type="button" class="performance-range-apply" id="applyPerformanceRange">Áp dụng</button>
-          <button type="button" class="performance-range-reset" id="resetPerformanceRange">Toàn kỳ</button>
-          <div class="performance-range-note" id="performanceRangeNote">
-            Chỉ áp dụng cho Tab 2 · Thuê bao & Doanh thu.
-          </div>
-        </div>
-
         <div class="area-status" id="areaStatus">
           Hiển thị theo phân loại ĐUQ Mới / ĐUQ Hiện hữu
         </div>
@@ -46488,6 +46633,152 @@
         return new Date(y,m-1,Math.min(d.getDate(),lastPrev),0,0,0,0);
       }
 
+
+      function globalFilteredOrderMap(sourceMap,from,to){
+        const out={};
+        Object.entries(sourceMap||{}).forEach(([pid,orders])=>{
+          const filtered=(orders||[]).filter(o=>performanceRangeContains(o.successDate,from,to));
+          if(filtered.length) out[pid]=filtered;
+        });
+        return out;
+      }
+
+      function classificationAtDate(r,endDate){
+        const raw=String(r["Trạng thái ĐUQ"]||"").trim();
+        const start=parseViDate(r["Ngày Khai báo"]);
+        if(!start || !endDate) return raw;
+        const age=Math.floor((endDate-start)/(24*60*60*1000));
+        if(age<=60) return "ĐUQ mới";
+
+        // Giữ các nhãn hiện hữu đang dùng trên dashboard.
+        if(raw==="ĐUQ trước năm 2026" || raw==="ĐUQ trong năm 2026" || raw==="ĐUQ hiện hữu" || raw==="Điểm UQ Hiện Hữu")
+          return raw;
+
+        return start.getFullYear()<2026 ? "ĐUQ trước năm 2026" : "ĐUQ trong năm 2026";
+      }
+
+      function buildGlobalFilteredRecords(pack,from,to){
+        const allMap=pack.orderDetails||{};
+        const map70=pack.orderDetails70K||{};
+        return (pack.data||[]).map(r=>{
+          const pid=String(r["ID điểm bán"]||"");
+          const all=(allMap[pid]||[]).filter(o=>performanceRangeContains(o.successDate,from,to));
+          const all70=(map70[pid]||[]).filter(o=>performanceRangeContains(o.successDate,from,to));
+          return {
+            ...r,
+            "Số lượng Thuê bao PTM":all.length,
+            "Số lượng Thuê bao PTM từ 70k":all70.length,
+            "Doanh thu bán hàng":all.reduce((sum,o)=>sum+Number(o.revenue||0),0),
+            "ĐUQ có PSSL":all.length>0?1:0,
+            "ĐUQ PSSL có gói từ 70k":all70.length>0?1:0,
+            "Trạng thái ĐUQ":classificationAtDate(r,to)
+          };
+        });
+      }
+
+      function buildGlobalAreaStats(records){
+        const byArea=new Map();
+        (records||[]).forEach(r=>{
+          const area=String(r["Đơn vị"]||"").trim();
+          if(!byArea.has(area)) byArea.set(area,[]);
+          byArea.get(area).push(r);
+        });
+
+        const areas=(typeof AREA_ORDER!=="undefined" && Array.isArray(AREA_ORDER))
+          ? AREA_ORDER
+          : [...byArea.keys()];
+
+        return areas.map(area=>{
+          const a=byArea.get(area)||[];
+          const total=a.length;
+          const pssl=a.filter(r=>Number(r["ĐUQ có PSSL"]||0)>0).length;
+          const pssl70=a.filter(r=>Number(r["ĐUQ PSSL có gói từ 70k"]||0)>0).length;
+          return {
+            area,
+            total,
+            pssl,
+            pssl70,
+            notpssl:total-pssl,
+            notpssl_old:a.filter(r=>Number(r["ĐUQ có PSSL"]||0)<=0 && String(r["Trạng thái ĐUQ"]||"")==="ĐUQ trước năm 2026").length,
+            notpssl_2026:a.filter(r=>Number(r["ĐUQ có PSSL"]||0)<=0 && String(r["Trạng thái ĐUQ"]||"")==="ĐUQ trong năm 2026").length,
+            notpssl_new:a.filter(r=>Number(r["ĐUQ có PSSL"]||0)<=0 && String(r["Trạng thái ĐUQ"]||"")==="ĐUQ mới").length,
+            subs:a.reduce((x,r)=>x+Number(r["Số lượng Thuê bao PTM"]||0),0),
+            subs70:a.reduce((x,r)=>x+Number(r["Số lượng Thuê bao PTM từ 70k"]||0),0),
+            revenue:a.reduce((x,r)=>x+Number(r["Doanh thu bán hàng"]||0),0),
+            sim_under5:a.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)<5).length,
+            sim5:a.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=5).length,
+            sim10:a.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=8).length,
+            sim20:a.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=10).length,
+            sim30:a.filter(r=>Number(r["Số lượng Thuê bao PTM"]||0)>=20).length,
+            rev_under500:a.filter(r=>Number(r["Doanh thu bán hàng"]||0)<500000).length,
+            rev500:a.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=500000).length,
+            rev1m:a.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=800000).length,
+            rev2m:a.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=1000000).length,
+            rev3m:a.filter(r=>Number(r["Doanh thu bán hàng"]||0)>=3000000).length
+          };
+        });
+      }
+
+      function splitGlobalAreaStats(records){
+        const newRows=(records||[]).filter(r=>String(r["Trạng thái ĐUQ"]||"").trim()==="ĐUQ mới");
+        const existRows=(records||[]).filter(r=>String(r["Trạng thái ĐUQ"]||"").trim()!=="ĐUQ mới");
+        return {
+          all:buildGlobalAreaStats(records),
+          newStats:buildGlobalAreaStats(newRows),
+          existStats:buildGlobalAreaStats(existRows)
+        };
+      }
+
+      function formatGlobalPeriodLabel(from,to){
+        return `Dữ liệu đang hiển thị từ ${viShortDate(from)} đến ${viShortDate(to)}`;
+      }
+
+      function refreshVisibleDashboardViews(){
+        syncDashboardFromData();
+        syncNotPsslClassCounts();
+        bindDynamicLeaderRows();
+
+        const areaView=document.getElementById("areaView");
+        const listView=document.getElementById("listView");
+        if(areaView && getComputedStyle(areaView).display!=="none"){
+          updateAreaIndicatorOptions();
+          renderAreas();
+        }
+        if(listView && getComputedStyle(listView).display!=="none"){
+          render();
+        }
+      }
+
+      function applyGlobalDateRange(from,to){
+        const pack=MONTHLY_DASHBOARD_DATA[ACTIVE_MONTH_KEY];
+        if(!pack || !from || !to) return false;
+
+        DATA=buildGlobalFilteredRecords(pack,from,to);
+        ORDER_DETAILS=globalFilteredOrderMap(pack.orderDetails||{},from,to);
+        ORDER_DETAILS_70K=globalFilteredOrderMap(pack.orderDetails70K||{},from,to);
+
+        const stats=splitGlobalAreaStats(DATA);
+        AREA_STATS=stats.all;
+        AREA_STATS_NEW=stats.newStats;
+        AREA_STATS_EXIST=stats.existStats;
+
+        PERFORMANCE_RANGE={from,to};
+        AREA_REPORT_END_DATE=viShortDate(to);
+
+        const period=document.getElementById("reportPeriodText");
+        if(period) period.textContent=formatGlobalPeriodLabel(from,to);
+
+        const status=document.getElementById("monthDataStatus");
+        if(status){
+          const nf=new Intl.NumberFormat("vi-VN");
+          status.textContent=`${pack.label.replace(" · chưa có dữ liệu","")} · ${nf.format(DATA.length)} ĐUQ`;
+        }
+
+        updatePerformanceRangeNote();
+        refreshVisibleDashboardViews();
+        return true;
+      }
+
       function performanceDefaultRange(){
         const pack=MONTHLY_DASHBOARD_DATA[ACTIVE_MONTH_KEY];
         if(!pack) return null;
@@ -46528,9 +46819,9 @@
         if(prevPack && monthHasData(prevPack)){
           const pf=shiftOneMonthBackClamped(PERFORMANCE_RANGE.from);
           const pt=shiftOneMonthBackClamped(PERFORMANCE_RANGE.to);
-          el.textContent=`Đang tính ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · So T-1 ${viShortDate(pf)} → ${viShortDate(pt)} theo % tăng/giảm.`;
+          el.textContent=`Toàn dashboard: ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · Bảng ĐUQ hiện hữu so T-1 ${viShortDate(pf)} → ${viShortDate(pt)}.`;
         }else{
-          el.textContent=`Đang tính ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · Chưa có dữ liệu tháng trước để so T-1.`;
+          el.textContent=`Toàn dashboard: ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · Chưa có dữ liệu T-1 để so sánh.`;
         }
       }
 
@@ -46659,10 +46950,6 @@
         ].forEach((el) => {
           if (el) el.style.display = specialMode ? "none" : "";
         });
-        const performanceRangeBar=$("performanceRangeBar");
-        if(performanceRangeBar){
-          performanceRangeBar.classList.toggle("is-visible", !specialMode && currentAreaTab==="performance");
-        }
         if (areaView) {
           const compact = currentAreaTab === "overview";
           areaView.classList.toggle("overview-compact", compact);
@@ -46774,13 +47061,13 @@
             const base=`<th>${label}</th>`;
             if(!showPerformanceComparison) return base;
             if(key==="subs"){
-              return `${base}<th class="t1-pct-head">% PTM<br>so T-1</th>`;
+              return `${base}<th class="t1-pct-head">% PTM<br>so với cùng kỳ<br>Tháng T-1</th>`;
             }
             if(key==="subs70"){
-              return `${base}<th class="t1-pct-head">% PTM ≥70k<br>so T-1</th>`;
+              return `${base}<th class="t1-pct-head">% PTM ≥70k<br>so với cùng kỳ<br>Tháng T-1</th>`;
             }
             if(key==="revenue"){
-              return `${base}<th class="t1-pct-head">% DT<br>so T-1</th>`;
+              return `${base}<th class="t1-pct-head">% DT<br>so với cùng kỳ<br>Tháng T-1</th>`;
             }
             return base;
           }).join("");
@@ -46955,19 +47242,14 @@
         let performanceBaseLabel="";
         if(currentAreaTab==="performance"){
           const ps=performanceSources();
-          if(ps.currentPack && ps.from && ps.to){
-            const curNewMap=buildPerformanceAreaStats(ps.currentPack,ps.from,ps.to,"new");
-            const curExistMap=buildPerformanceAreaStats(ps.currentPack,ps.from,ps.to,"exist");
+          // Kỳ hiện tại đã được bộ lọc thời gian toàn dashboard áp vào AREA_STATS_NEW / EXIST.
+          sourceNew=AREA_STATS_NEW;
+          sourceExist=AREA_STATS_EXIST;
 
-            // Giữ đầy đủ cấu trúc chỉ tiêu cũ của bảng, chỉ thay 3 số lõi theo khoảng ngày.
-            sourceNew=AREA_STATS_NEW.map(a=>({...a,...(curNewMap.get(a.area)||{subs:0,subs70:0,revenue:0})}));
-            sourceExist=AREA_STATS_EXIST.map(a=>({...a,...(curExistMap.get(a.area)||{subs:0,subs70:0,revenue:0})}));
-
-            if(ps.prevPack && monthHasData(ps.prevPack)){
-              performancePrevNew=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"new");
-              performancePrevExist=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"exist");
-              performanceBaseLabel=`Cùng kỳ ${viShortDate(ps.prevFrom)} → ${viShortDate(ps.prevTo)}`;
-            }
+          // Riêng ĐUQ hiện hữu vẫn so T-1 theo đúng cùng khoảng ngày tháng trước.
+          if(ps.prevPack && monthHasData(ps.prevPack) && ps.prevFrom && ps.prevTo){
+            performancePrevExist=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"exist");
+            performanceBaseLabel=`T-1 ${viShortDate(ps.prevFrom)} → ${viShortDate(ps.prevTo)}`;
           }
         }
 
@@ -47747,8 +48029,9 @@
         if (!monthHasData(pack)) return false;
 
         ACTIVE_MONTH_KEY = monthKey;
+        // Nạp dữ liệu gốc trước, sau đó initPerformanceRangeForMonth()
+        // sẽ áp bộ lọc toàn kỳ cho TOÀN dashboard.
         DATA = pack.data;
-        setTimeout(()=>initPerformanceRangeForMonth(true),0);
         ORDER_DETAILS_70K = pack.orderDetails70K || {};
         ORDER_DETAILS = pack.orderDetails || {};
         AREA_STATS = pack.areaStats || [];
@@ -47766,6 +48049,13 @@
         if (status) {
           const nf = new Intl.NumberFormat("vi-VN");
           status.textContent = `${pack.label.replace(" · chưa có dữ liệu","")} · ${nf.format(DATA.length)} ĐUQ`;
+        }
+
+        // Khi đổi tháng: đặt Từ ngày = đầu tháng, Đến ngày = ngày chốt dữ liệu,
+        // rồi áp cho toàn bộ dashboard.
+        initPerformanceRangeForMonth(true);
+        if(PERFORMANCE_RANGE.from && PERFORMANCE_RANGE.to){
+          applyGlobalDateRange(PERFORMANCE_RANGE.from,PERFORMANCE_RANGE.to);
         }
 
         // Xóa các bộ lọc phụ khi đổi tháng để không giữ trạng thái của tháng cũ.
@@ -47955,24 +48245,28 @@
         const t=parseIsoDateLocal($("performanceToDate")?.value);
         const def=performanceDefaultRange();
         if(!f || !t || !def) return;
+
         const from=f<def.from?def.from:f;
         const to=t>def.to?def.to:t;
+
         if(from>to){
           alert("Từ ngày phải nhỏ hơn hoặc bằng Đến ngày.");
           return;
         }
-        PERFORMANCE_RANGE={from,to};
+
         if($("performanceFromDate")) $("performanceFromDate").value=isoDateLocal(from);
         if($("performanceToDate")) $("performanceToDate").value=isoDateLocal(to);
-        updatePerformanceRangeNote();
-        if(currentAreaTab==="performance") renderAreas();
+
+        applyGlobalDateRange(from,to);
       };
       if($("applyPerformanceRange")) $("applyPerformanceRange").addEventListener("click",applyPerformanceRange);
       if($("performanceFromDate")) $("performanceFromDate").addEventListener("change",applyPerformanceRange);
       if($("performanceToDate")) $("performanceToDate").addEventListener("change",applyPerformanceRange);
       if($("resetPerformanceRange")) $("resetPerformanceRange").addEventListener("click",()=>{
         initPerformanceRangeForMonth(true);
-        if(currentAreaTab==="performance") renderAreas();
+        if(PERFORMANCE_RANGE.from && PERFORMANCE_RANGE.to){
+          applyGlobalDateRange(PERFORMANCE_RANGE.from,PERFORMANCE_RANGE.to);
+        }
       });
 
       $("areaIndicator").addEventListener("change", renderAreas);
