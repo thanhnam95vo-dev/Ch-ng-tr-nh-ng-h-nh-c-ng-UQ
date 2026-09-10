@@ -2415,8 +2415,8 @@
    ================================================================ */
       #areaView:not(.overview-compact) .area-table-wrap tbody td,
       #areaView:not(.overview-compact) .area-table-wrap tfoot td {
-        padding-top: 9px !important;
-        padding-bottom: 9px !important;
+        padding-top: 6px !important;
+        padding-bottom: 7px !important;
         line-height: 0.2 !important;
       }
       #areaView:not(.overview-compact) .area-table-wrap tbody td:nth-child(1),
@@ -3138,6 +3138,215 @@
         .month-independent-note{width:100%}
       }
 
+
+      /* ===== TAB 2: CHỌN TỪ NGÀY - ĐẾN NGÀY & SO SÁNH CÙNG KỲ ===== */
+      .performance-range-bar{
+        display:none;
+        margin:12px 0 10px;
+        padding:12px 14px;
+        border:1px solid #cfe0ef;
+        border-radius:14px;
+        background:#f7fbff;
+        align-items:end;
+        gap:12px;
+        flex-wrap:wrap;
+      }
+      .performance-range-bar.is-visible{display:flex}
+      .performance-range-field{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+      }
+      .performance-range-field label{
+        font-size:12px;
+        font-weight:800;
+        color:#17496e;
+      }
+      .performance-range-field input{
+        height:38px;
+        border:1px solid #b9ccdc;
+        border-radius:9px;
+        padding:0 10px;
+        font:inherit;
+        color:#173b68;
+        background:#fff;
+      }
+      .performance-range-apply{
+        height:38px;
+        border:0;
+        border-radius:9px;
+        padding:0 15px;
+        background:#005baa;
+        color:#fff;
+        font-weight:800;
+        cursor:pointer;
+      }
+      .performance-range-reset{
+        height:38px;
+        border:1px solid #b9ccdc;
+        border-radius:9px;
+        padding:0 13px;
+        background:#fff;
+        color:#17496e;
+        font-weight:800;
+        cursor:pointer;
+      }
+      .performance-range-note{
+        flex:1;
+        min-width:260px;
+        font-size:12px;
+        color:#536b80;
+        line-height:1.45;
+        padding-bottom:3px;
+      }
+      .performance-compare-cell-legacy-disabled{
+        min-width:245px;
+        white-space:normal!important;
+        text-align:left!important;
+        line-height:1.45!important;
+        background:#f8fbff!important;
+        font-size:11px!important;
+      }
+      .performance-compare-cell-legacy-disabled .pc-line-legacy-disabled{
+        display:block;
+        padding:2px 0;
+      }
+      .performance-compare-cell-legacy-disabled .pc-up-legacy-disabled{color:#08783e;font-weight:800}
+      .performance-compare-cell-legacy-disabled .pc-down-legacy-disabled{color:#b42318;font-weight:800}
+      .performance-compare-cell-legacy-disabled .pc-flat-legacy-disabled{color:#52677a;font-weight:800}
+      .performance-compare-cell-legacy-disabled .pc-base{
+        display:block;
+        color:#748596;
+        font-size:10px;
+        margin-top:3px;
+      }
+      th.performance-compare-head-legacy-disabled{
+        min-width:245px;
+        white-space:normal!important;
+        text-align:center!important;
+        line-height:1.3!important;
+      }
+      @media(max-width:720px){
+        .performance-range-field{width:calc(50% - 6px)}
+        .performance-range-field input{width:100%}
+        .performance-range-note{width:100%;min-width:0}
+      }
+
+
+
+      
+      
+      /* ===== TAB 2: 3 CỘT % SO T-1 ===== */
+      #areaView th.t1-pct-head,
+      #areaView td.t1-pct-cell{
+        width:70px !important;
+        min-width:76px !important;
+        max-width:76px !important;
+        text-align:center !important;
+        vertical-align:middle !important;
+        white-space:nowrap !important;
+      }
+
+      #areaView th.t1-pct-head{
+        padding:7px 3px !important;
+        font-size:9px !important;
+        line-height:1.15 !important;
+      }
+
+      #areaView td.t1-pct-cell{
+        padding:6px 3px !important;
+        font-size:10px !important;
+        line-height:1.1 !important;
+        /* font-weight:900 !important; */
+      }
+
+      .t1-up{color:#08783e !important;}
+      .t1-down{color:#b42318 !important;}
+      .t1-flat{color:#52677a !important;}
+      .t1-new{
+        display:inline-block;
+        padding:2px 5px;
+        border-radius:999px;
+        background:#e8f7ef;
+        color:#08783e;
+        font-size:9px;
+        /* font-weight:900; */
+      }
+
+
+      /* Icon xu hướng T-1 */
+      #areaView td.t1-pct-cell .t1-up,
+      #areaView td.t1-pct-cell .t1-down,
+      #areaView td.t1-pct-cell .t1-flat{
+        display:inline-block;
+        min-width:58px;
+        text-align:center;
+        letter-spacing:-0.1px;
+      }
+
+
+      /* ===== T-1: ICON CĂN TRÁI, SỐ CĂN GIỮA ===== */
+      #areaView td.t1-pct-cell{
+        position:relative !important;
+        width:76px !important;
+        min-width:76px !important;
+        max-width:76px !important;
+        padding:6px 3px !important;
+        text-align:center !important;
+        white-space:nowrap !important;
+        overflow:hidden !important;
+      }
+
+      #areaView td.t1-pct-cell .t1-trend{
+        position:relative !important;
+        display:block !important;
+        width:100% !important;
+        min-width:0 !important;
+        text-align:center !important;
+        white-space:nowrap !important;
+        line-height:1.1 !important;
+      }
+
+      #areaView td.t1-pct-cell .t1-trend-icon{
+        position:absolute !important;
+        left:0px !important;
+        top:50% !important;
+        transform:translateY(-50%) !important;
+        width:11px !important;
+        text-align:left !important;
+        font-size:10px !important;
+        line-height:1 !important;
+      }
+
+      #areaView td.t1-pct-cell .t1-trend-value{
+        display:block !important;
+        width:100% !important;
+        text-align:center !important;
+        font-size:13px !important;
+        /* font-weight:900 !important; */
+        white-space:nowrap !important;
+      }
+
+      #areaView td.t1-pct-cell .t1-up,
+      #areaView td.t1-pct-cell .t1-down,
+      #areaView td.t1-pct-cell .t1-flat{
+        min-width:0 !important;
+        letter-spacing:0 !important;
+      }
+
+
+      /* Dòng TỔNG: % T-1 luôn màu trắng trên nền xanh */
+      #areaView .area-table-wrap tfoot td.t1-pct-cell,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-trend,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-trend-icon,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-trend-value,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-up,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-down,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-flat,
+      #areaView .area-table-wrap tfoot td.t1-pct-cell .t1-new {
+        color: #ffffff !important;
+      }
+
 </style>
   </head>
   <body>
@@ -3839,6 +4048,22 @@
             ↻ Đặt lại bộ lọc
           </button>
         </div>
+        <div class="performance-range-bar" id="performanceRangeBar">
+          <div class="performance-range-field">
+            <label for="performanceFromDate">Từ ngày</label>
+            <input type="date" id="performanceFromDate">
+          </div>
+          <div class="performance-range-field">
+            <label for="performanceToDate">Đến ngày</label>
+            <input type="date" id="performanceToDate">
+          </div>
+          <button type="button" class="performance-range-apply" id="applyPerformanceRange">Áp dụng</button>
+          <button type="button" class="performance-range-reset" id="resetPerformanceRange">Toàn kỳ</button>
+          <div class="performance-range-note" id="performanceRangeNote">
+            Chỉ áp dụng cho Tab 2 · Thuê bao & Doanh thu.
+          </div>
+        </div>
+
         <div class="area-status" id="areaStatus">
           Hiển thị theo phân loại ĐUQ Mới / ĐUQ Hiện hữu
         </div>
@@ -46223,6 +46448,192 @@
         });
       }
 
+
+      // ===== TAB 2: lọc theo khoảng ngày và so sánh cùng kỳ tháng trước =====
+      let PERFORMANCE_RANGE = { from:null, to:null };
+
+      function isoDateLocal(d){
+        const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0");
+        return `${y}-${m}-${day}`;
+      }
+
+      function parseIsoDateLocal(v){
+        const m=String(v||"").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if(!m) return null;
+        return new Date(Number(m[1]),Number(m[2])-1,Number(m[3]),0,0,0,0);
+      }
+
+      function parseOrderDate(v){
+        const m=String(v||"").match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if(!m) return null;
+        return new Date(Number(m[1]),Number(m[2])-1,Number(m[3]),0,0,0,0);
+      }
+
+      function viShortDate(d){
+        if(!d) return "—";
+        return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}/${d.getFullYear()}`;
+      }
+
+      function previousMonthKeyForPerformance(key){
+        const m=String(key||"").match(/^(\d{4})-(\d{2})$/);
+        if(!m) return null;
+        let y=Number(m[1]), mon=Number(m[2])-1;
+        if(mon===0){ y--; mon=12; }
+        return `${y}-${String(mon).padStart(2,"0")}`;
+      }
+
+      function shiftOneMonthBackClamped(d){
+        const y=d.getFullYear(), m=d.getMonth();
+        const lastPrev=new Date(y,m,0).getDate();
+        return new Date(y,m-1,Math.min(d.getDate(),lastPrev),0,0,0,0);
+      }
+
+      function performanceDefaultRange(){
+        const pack=MONTHLY_DASHBOARD_DATA[ACTIVE_MONTH_KEY];
+        if(!pack) return null;
+        const key=String(ACTIVE_MONTH_KEY||"");
+        const km=key.match(/^(\d{4})-(\d{2})$/);
+        const end=parseViDate(pack.reportEndDate);
+        if(!km || !end) return null;
+        return {
+          from:new Date(Number(km[1]),Number(km[2])-1,1,0,0,0,0),
+          to:new Date(end.getFullYear(),end.getMonth(),end.getDate(),0,0,0,0)
+        };
+      }
+
+      function initPerformanceRangeForMonth(force=false){
+        const def=performanceDefaultRange();
+        if(!def) return;
+        if(force || !PERFORMANCE_RANGE.from || !PERFORMANCE_RANGE.to){
+          PERFORMANCE_RANGE={from:def.from,to:def.to};
+        }else{
+          // Khi đổi tháng, luôn đưa bộ lọc về toàn kỳ của tháng đang chọn.
+          PERFORMANCE_RANGE={from:def.from,to:def.to};
+        }
+        const f=$("performanceFromDate"), t=$("performanceToDate");
+        if(f){
+          f.min=isoDateLocal(def.from); f.max=isoDateLocal(def.to); f.value=isoDateLocal(PERFORMANCE_RANGE.from);
+        }
+        if(t){
+          t.min=isoDateLocal(def.from); t.max=isoDateLocal(def.to); t.value=isoDateLocal(PERFORMANCE_RANGE.to);
+        }
+        updatePerformanceRangeNote();
+      }
+
+      function updatePerformanceRangeNote(){
+        const el=$("performanceRangeNote");
+        if(!el || !PERFORMANCE_RANGE.from || !PERFORMANCE_RANGE.to) return;
+        const prevKey=previousMonthKeyForPerformance(ACTIVE_MONTH_KEY);
+        const prevPack=prevKey ? MONTHLY_DASHBOARD_DATA[prevKey] : null;
+        if(prevPack && monthHasData(prevPack)){
+          const pf=shiftOneMonthBackClamped(PERFORMANCE_RANGE.from);
+          const pt=shiftOneMonthBackClamped(PERFORMANCE_RANGE.to);
+          el.textContent=`Đang tính ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · So T-1 ${viShortDate(pf)} → ${viShortDate(pt)} theo % tăng/giảm.`;
+        }else{
+          el.textContent=`Đang tính ${viShortDate(PERFORMANCE_RANGE.from)} → ${viShortDate(PERFORMANCE_RANGE.to)} · Chưa có dữ liệu tháng trước để so T-1.`;
+        }
+      }
+
+      function performanceRangeContains(dateText,from,to){
+        const d=parseOrderDate(dateText);
+        return !!d && d>=from && d<=to;
+      }
+
+      function pointPerformanceInRange(pack,r,from,to){
+        const pid=String(r["ID điểm bán"]||"");
+        const orders=((pack.orderDetails||{})[pid]||[]).filter(o=>performanceRangeContains(o.successDate,from,to));
+        const orders70=((pack.orderDetails70K||{})[pid]||[]).filter(o=>performanceRangeContains(o.successDate,from,to));
+        return {
+          subs:orders.length,
+          subs70:orders70.length,
+          revenue:orders.reduce((sum,o)=>sum+Number(o.revenue||0),0)
+        };
+      }
+
+      function buildPerformanceAreaStats(pack,from,to,statusType){
+        const map=new Map();
+        const rows=(pack && pack.data)||[];
+        rows.forEach(r=>{
+          const status=String(r["Trạng thái ĐUQ"]||"").trim();
+          const isNew=status==="ĐUQ mới";
+          if(statusType==="new" && !isNew) return;
+          if(statusType==="exist" && isNew) return;
+          const area=String(r["Đơn vị"]||"").trim();
+          if(!map.has(area)) map.set(area,{area,total:0,subs:0,subs70:0,revenue:0});
+          const a=map.get(area);
+          const p=pointPerformanceInRange(pack,r,from,to);
+          a.total++;
+          a.subs+=p.subs;
+          a.subs70+=p.subs70;
+          a.revenue+=p.revenue;
+        });
+        return map;
+      }
+
+      function performanceDeltaClass(v){
+        return v>0?"pc-up-legacy-disabled":v<0?"pc-down-legacy-disabled":"pc-flat-legacy-disabled";
+      }
+
+      function performanceSigned(v){
+        const n=Number(v||0);
+        return `${n>0?"+":""}${new Intl.NumberFormat("vi-VN").format(n)}`;
+      }
+
+      function t1PctInfo(current,previous){
+        if(previous===null || previous===undefined){
+          return {text:"—",cls:"t1-flat"};
+        }
+
+        const cur=Number(current||0);
+        const prev=Number(previous||0);
+
+        if(prev===0){
+          if(cur===0) return {text:"0%",cls:"t1-flat"};
+          return {text:"Mới",cls:"t1-new"};
+        }
+
+        const pct=((cur-prev)/prev)*100;
+        if(Math.abs(pct)<0.05){
+          return {text:"0%",cls:"t1-flat"};
+        }
+
+        return {
+          text:`${pct>0?"▲":"▼"} ${Math.abs(pct).toFixed(1)}%`,
+          cls:pct>0?"t1-up":"t1-down"
+        };
+      }
+
+      function t1PctHtml(current,previous){
+        const info=t1PctInfo(current,previous);
+
+        if(info.text==="Mới"){
+          return `<span class="t1-new">Mới</span>`;
+        }
+
+        if(info.cls==="t1-up" || info.cls==="t1-down"){
+          const icon=info.cls==="t1-up" ? "▲" : "▼";
+          const value=info.text.replace(/^[▲▼]\s*/, "");
+          return `<span class="t1-trend ${info.cls}">
+                    <span class="t1-trend-icon">${icon}</span>
+                    <span class="t1-trend-value">${value}</span>
+                  </span>`;
+        }
+
+        return `<span class="t1-trend t1-flat">
+                  <span class="t1-trend-value">${info.text}</span>
+                </span>`;
+      }
+
+      function performanceSources(){
+        const currentPack=MONTHLY_DASHBOARD_DATA[ACTIVE_MONTH_KEY];
+        const prevKey=previousMonthKeyForPerformance(ACTIVE_MONTH_KEY);
+        const prevPack=prevKey ? MONTHLY_DASHBOARD_DATA[prevKey] : null;
+        const from=PERFORMANCE_RANGE.from, to=PERFORMANCE_RANGE.to;
+        const prevFrom=from?shiftOneMonthBackClamped(from):null;
+        const prevTo=to?shiftOneMonthBackClamped(to):null;
+        return {currentPack,prevPack,from,to,prevFrom,prevTo};
+      }
+
       function renderAreas() {
         const areaView = $("areaView");
         const detailPanel = $("areaNotPsslDetailPanel");
@@ -46248,6 +46659,10 @@
         ].forEach((el) => {
           if (el) el.style.display = specialMode ? "none" : "";
         });
+        const performanceRangeBar=$("performanceRangeBar");
+        if(performanceRangeBar){
+          performanceRangeBar.classList.toggle("is-visible", !specialMode && currentAreaTab==="performance");
+        }
         if (areaView) {
           const compact = currentAreaTab === "overview";
           areaView.classList.toggle("overview-compact", compact);
@@ -46352,10 +46767,27 @@
             pillEl = $(pillId);
           if (!headEl || !bodyEl || !footEl) return;
 
-          headEl.innerHTML = `<tr><th>TT</th><th>Địa bàn</th>${columns.map((c) => `<th>${c[1]}</th>`).join("")}</tr>`;
+          // Chỉ ĐUQ HIỆN HỮU so với T-1.
+          // ĐUQ MỚI giữ nguyên giao diện bảng cũ, không có các cột % so sánh.
+          const showPerformanceComparison=currentAreaTab==="performance" && statusType==="exist";
+          const headerColumns = columns.map(([key,label]) => {
+            const base=`<th>${label}</th>`;
+            if(!showPerformanceComparison) return base;
+            if(key==="subs"){
+              return `${base}<th class="t1-pct-head">% PTM<br>so T-1</th>`;
+            }
+            if(key==="subs70"){
+              return `${base}<th class="t1-pct-head">% PTM ≥70k<br>so T-1</th>`;
+            }
+            if(key==="revenue"){
+              return `${base}<th class="t1-pct-head">% DT<br>so T-1</th>`;
+            }
+            return base;
+          }).join("");
+          headEl.innerHTML = `<tr><th>TT</th><th>Địa bàn</th>${headerColumns}</tr>`;
 
           if (!list.length) {
-            bodyEl.innerHTML = `<tr><td colspan="${columns.length + 2}" style="padding:24px;color:var(--muted)">Không có địa bàn phù hợp với bộ lọc đã chọn.</td></tr>`;
+            bodyEl.innerHTML = `<tr><td colspan="${columns.length + 2 + (showPerformanceComparison?3:0)}" style="padding:24px;color:var(--muted)">Không có địa bàn phù hợp với bộ lọc đã chọn.</td></tr>`;
             footEl.innerHTML = "";
             if (statusEl)
               statusEl.textContent = `${titlePrefix} | Không có dữ liệu`;
@@ -46445,7 +46877,25 @@
               : keepWhiteNew
                 ? "Sản lượng từ 0 đến 5 - không tô màu"
                 : `Xếp hạng ${rank}/${list.length}`;
-            return `<td class="click-cell rank-tone ${css}" style="${tone}" title="${toneTitle}" data-area="${esc(a.area)}" data-key="${key}" data-label="${label.replace(/&lt;/g, "<")}" data-status-type="${statusType}">${metricDisplay(key, metricValue(a, key))}</td>`;
+
+            const base=`<td class="click-cell rank-tone ${css}" style="${tone}" title="${toneTitle}" data-area="${esc(a.area)}" data-key="${key}" data-label="${label.replace(/&lt;/g, "<")}" data-status-type="${statusType}">${metricDisplay(key, metricValue(a, key))}</td>`;
+
+            if(!showPerformanceComparison) return base;
+
+            const pm=statusType==="new"?performancePrevNew:performancePrevExist;
+            const prev=pm ? (pm.get(a.area)||{subs:0,subs70:0,revenue:0}) : null;
+
+            if(key==="subs"){
+              return `${base}<td class="t1-pct-cell">${t1PctHtml(a.subs,prev?prev.subs:null)}</td>`;
+            }
+            if(key==="subs70"){
+              return `${base}<td class="t1-pct-cell">${t1PctHtml(a.subs70,prev?prev.subs70:null)}</td>`;
+            }
+            if(key==="revenue"){
+              return `${base}<td class="t1-pct-cell">${t1PctHtml(a.revenue,prev?prev.revenue:null)}</td>`;
+            }
+
+            return base;
           })
           .join("")}
       </tr>`,
@@ -46459,7 +46909,32 @@
       ${columns
         .map(([key, label]) => {
           const clickKey = key === "psslRate" ? "pssl" : key;
-          return `<td class="total-click" data-total-key="${clickKey}" data-total-label="${label.replace(/<br>/g, " ").replace(/&lt;/g, "<")}" data-status-type="${statusType}" data-areas="${visibleAreas.join("|")}">${metricDisplay(key, metricValue(t, key))}</td>`;
+          const base=`<td class="total-click" data-total-key="${clickKey}" data-total-label="${label.replace(/<br>/g, " ").replace(/&lt;/g, "<")}" data-status-type="${statusType}" data-areas="${visibleAreas.join("|")}">${metricDisplay(key, metricValue(t, key))}</td>`;
+
+          if(!showPerformanceComparison) return base;
+
+          const pm=statusType==="new"?performancePrevNew:performancePrevExist;
+          const prevTotal=pm
+            ? visibleAreas.reduce((acc,area)=>{
+                const p=pm.get(area)||{subs:0,subs70:0,revenue:0};
+                acc.subs+=p.subs;
+                acc.subs70+=p.subs70;
+                acc.revenue+=p.revenue;
+                return acc;
+              },{subs:0,subs70:0,revenue:0})
+            : null;
+
+          if(key==="subs"){
+            return `${base}<td class="t1-pct-cell">${t1PctHtml(t.subs,prevTotal?prevTotal.subs:null)}</td>`;
+          }
+          if(key==="subs70"){
+            return `${base}<td class="t1-pct-cell">${t1PctHtml(t.subs70,prevTotal?prevTotal.subs70:null)}</td>`;
+          }
+          if(key==="revenue"){
+            return `${base}<td class="t1-pct-cell">${t1PctHtml(t.revenue,prevTotal?prevTotal.revenue:null)}</td>`;
+          }
+
+          return base;
         })
         .join("")}
     </tr>`;
@@ -46475,8 +46950,29 @@
           }
         }
 
-        const listNew = prepareList(AREA_STATS_NEW, true);
-        const listExist = prepareList(AREA_STATS_EXIST);
+        let sourceNew=AREA_STATS_NEW, sourceExist=AREA_STATS_EXIST;
+        let performancePrevNew=null, performancePrevExist=null;
+        let performanceBaseLabel="";
+        if(currentAreaTab==="performance"){
+          const ps=performanceSources();
+          if(ps.currentPack && ps.from && ps.to){
+            const curNewMap=buildPerformanceAreaStats(ps.currentPack,ps.from,ps.to,"new");
+            const curExistMap=buildPerformanceAreaStats(ps.currentPack,ps.from,ps.to,"exist");
+
+            // Giữ đầy đủ cấu trúc chỉ tiêu cũ của bảng, chỉ thay 3 số lõi theo khoảng ngày.
+            sourceNew=AREA_STATS_NEW.map(a=>({...a,...(curNewMap.get(a.area)||{subs:0,subs70:0,revenue:0})}));
+            sourceExist=AREA_STATS_EXIST.map(a=>({...a,...(curExistMap.get(a.area)||{subs:0,subs70:0,revenue:0})}));
+
+            if(ps.prevPack && monthHasData(ps.prevPack)){
+              performancePrevNew=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"new");
+              performancePrevExist=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"exist");
+              performanceBaseLabel=`Cùng kỳ ${viShortDate(ps.prevFrom)} → ${viShortDate(ps.prevTo)}`;
+            }
+          }
+        }
+
+        const listNew = prepareList(sourceNew, true);
+        const listExist = prepareList(sourceExist);
 
         renderOneTable(
           listNew,
@@ -47252,6 +47748,7 @@
 
         ACTIVE_MONTH_KEY = monthKey;
         DATA = pack.data;
+        setTimeout(()=>initPerformanceRangeForMonth(true),0);
         ORDER_DETAILS_70K = pack.orderDetails70K || {};
         ORDER_DETAILS = pack.orderDetails || {};
         AREA_STATS = pack.areaStats || [];
@@ -47446,9 +47943,38 @@
               .querySelectorAll(".area-menu-tab")
               .forEach((x) => x.classList.toggle("active", x === btn));
             updateAreaIndicatorOptions();
+            if(currentAreaTab==="performance" && (!PERFORMANCE_RANGE.from || !PERFORMANCE_RANGE.to)){
+              initPerformanceRangeForMonth(true);
+            }
             renderAreas();
           }),
       );
+
+      const applyPerformanceRange=()=>{
+        const f=parseIsoDateLocal($("performanceFromDate")?.value);
+        const t=parseIsoDateLocal($("performanceToDate")?.value);
+        const def=performanceDefaultRange();
+        if(!f || !t || !def) return;
+        const from=f<def.from?def.from:f;
+        const to=t>def.to?def.to:t;
+        if(from>to){
+          alert("Từ ngày phải nhỏ hơn hoặc bằng Đến ngày.");
+          return;
+        }
+        PERFORMANCE_RANGE={from,to};
+        if($("performanceFromDate")) $("performanceFromDate").value=isoDateLocal(from);
+        if($("performanceToDate")) $("performanceToDate").value=isoDateLocal(to);
+        updatePerformanceRangeNote();
+        if(currentAreaTab==="performance") renderAreas();
+      };
+      if($("applyPerformanceRange")) $("applyPerformanceRange").addEventListener("click",applyPerformanceRange);
+      if($("performanceFromDate")) $("performanceFromDate").addEventListener("change",applyPerformanceRange);
+      if($("performanceToDate")) $("performanceToDate").addEventListener("change",applyPerformanceRange);
+      if($("resetPerformanceRange")) $("resetPerformanceRange").addEventListener("click",()=>{
+        initPerformanceRangeForMonth(true);
+        if(currentAreaTab==="performance") renderAreas();
+      });
+
       $("areaIndicator").addEventListener("change", renderAreas);
       $("areaMetric").addEventListener("change", renderAreas);
       $("resetAreaFilters").onclick = () => {
