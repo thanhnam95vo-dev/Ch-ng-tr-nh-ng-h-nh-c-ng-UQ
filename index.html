@@ -49285,9 +49285,15 @@
           byArea.get(area).push(r);
         });
 
-        const areas=(typeof AREA_ORDER!=="undefined" && Array.isArray(AREA_ORDER))
-          ? AREA_ORDER
-          : [...byArea.keys()];
+        // Danh sách chuẩn 22 địa bàn phải dùng cố định khi tổng hợp lại theo bộ lọc ngày.
+        // AREA_ORDER ở renderStandardPanel là biến cục bộ, nên đoạn cũ không nhìn thấy nó
+        // và đã fallback sang [...byArea.keys()] => chỉ còn các địa bàn có ĐUQ phát sinh.
+        const areas=[
+          "Tân Trụ","Thạnh Hóa","Vĩnh Hưng","Tầm Vu","Kiến Tường",
+          "Tân Châu","Tân Biên","Thủ Thừa","Châu Thành","Tân Thạnh",
+          "Đức Huệ","Trảng Bàng","Gò Dầu","Bến Cầu","Dương Minh Châu","Hòa Thành",
+          "Tân Ninh","Long An","Bến Lức","Cần Đước","Cần Giuộc","Đức Hòa"
+        ];
 
         return areas.map(area=>{
           const a=byArea.get(area)||[];
@@ -49446,17 +49452,12 @@
         const map=new Map();
         const rows=(pack && pack.data)||[];
         rows.forEach(r=>{
-          // Phân loại lại ĐUQ theo TUỔI ĐIỂM tại ngày kết thúc của chính kỳ đang so.
-          // Ví dụ:
-          //  - Kỳ 01/09 → 13/09: phân loại tại 13/09.
-          //  - T-1 01/08 → 13/08: phân loại lại tại 13/08.
-          // Không dùng nhãn "Trạng thái ĐUQ" đã lưu sẵn của tháng khác vì sẽ làm lệch mẫu so sánh.
+          // Khi so cùng kỳ tháng T-1, phân loại ĐUQ theo tuổi điểm
+          // tại ngày kết thúc của chính kỳ đang tính.
           const status=classificationAtDate(r,to);
           const isNew=status==="ĐUQ mới";
-
           if(statusType==="new" && !isNew) return;
           if(statusType==="exist" && isNew) return;
-
           const area=String(r["Đơn vị"]||"").trim();
           if(!map.has(area)) map.set(area,{area,total:0,subs:0,subs70:0,revenue:0});
           const a=map.get(area);
@@ -49607,7 +49608,7 @@
           } else {
             list.sort((a, b) => b.subs - a.subs || b.revenue - a.revenue);
           }
-          // Bảng ĐUQ mới luôn giữ đủ 22 địa bàn; bảng hiện hữu giữ nguyên logic cũ.
+          // Khi keepZeroAreas=true, giữ nguyên đủ 22 địa bàn kể cả địa bàn có total = 0.
           if (!keepZeroAreas) list = list.filter((a) => a.total > 0);
           return list;
         }
@@ -49854,15 +49855,17 @@
           sourceNew=AREA_STATS_NEW;
           sourceExist=AREA_STATS_EXIST;
 
-          // Riêng ĐUQ hiện hữu so với CÙNG KỲ tháng T-1, và cả hai kỳ đều phân loại tuổi điểm tại ngày kết thúc tương ứng.
+          // Riêng ĐUQ hiện hữu vẫn so T-1 theo đúng cùng khoảng ngày tháng trước.
           if(ps.prevPack && monthHasData(ps.prevPack) && ps.prevFrom && ps.prevTo){
             performancePrevExist=buildPerformanceAreaStats(ps.prevPack,ps.prevFrom,ps.prevTo,"exist");
             performanceBaseLabel=`T-1 ${viShortDate(ps.prevFrom)} → ${viShortDate(ps.prevTo)}`;
           }
         }
 
+        // Luôn cố định đủ 22 địa bàn cho cả ĐUQ MỚI và ĐUQ HIỆN HỮU.
+        // Địa bàn không có điểm/sản lượng vẫn hiển thị với giá trị 0.
         const listNew = prepareList(sourceNew, true);
-        const listExist = prepareList(sourceExist);
+        const listExist = prepareList(sourceExist, true);
 
         renderOneTable(
           listNew,
